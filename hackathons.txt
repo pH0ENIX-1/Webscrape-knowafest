@@ -1,0 +1,54 @@
+Start Date
+Fest Name
+Fest Type
+College Name & City
+
+07 Mar 2023
+ COGNIT '23 
+Technical, Symposium, Online, Hackathon
+ MNM Jain Engineering CollegeChennai 
+
+10 Mar 2023
+ Ideathon 2023 
+Technical, Hackathon
+ Francis Xavier Engineering CollegeTirunelveli 
+
+10 Mar 2023
+ CONOCITHON 2.0 
+Online, Hackathon
+ St. Joseph's College of EngineeringChennai 
+
+10 Mar 2023
+ GAMIGO-2023 
+Hackathon
+ K Ramakrishnan College of EngineeringTrichy 
+
+25 Feb 2023
+ SRIT TECHNOVATION HACKATHON 2023 
+Technical, Conference, Hackathon
+ Sri Ramakrishna Institute of TechnologyCoimbatore 
+
+10 Mar 2023
+ TECHNO SYNC 2023 
+Technical, Hackathon
+ Karpagam College of EngineeringCoimbatore 
+
+28 Feb 2023
+ Skysprint Ideathon 2023 
+Webinar, Hackathon
+ Kumaraguru College of TechnologyCoimbatore 
+
+03 Mar 2023
+ Skara 23 
+Technical, Symposium, Hackathon
+ VSB Engineering CollegeKarur 
+
+06 Mar 2023
+ Femina Hack Fest 2023 
+Hackathon
+ KGiSL Institute of TechnologyCoimbatore 
+
+18 Feb 2023
+ Ureckon 2023/ Product Game 2023 
+Management, Hackathon
+ University of Engineering and Management KolkataKolkata 
