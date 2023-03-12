@@ -31,13 +31,13 @@ class Scraper:
             hackathons = soup.find_all('tr')
             locations = soup.find_all("span", itemprop = "name")
             register_links = soup.find_all("tr", itemtype="http://schema.org/Event")
-            print(register_links[0]["itemscope"])
+            print(register_links[0].get("onClick"))
             with open('hackathons.txt','w') as outfile:
                 
                 dataframe_columns = hackathons.pop(0).text.split("\n")
                 dataframe_columns.pop(4)
                 # print(dataframe_columns)
-                hack_data = pd.DataFrame(columns = dataframe_columns)
+                self.hack_data = pd.DataFrame(columns = dataframe_columns)
                 
                 for index in range(len(hackathons)):
                     
@@ -50,10 +50,10 @@ class Scraper:
                     row_data.append(location)
                     # print(row_data)
 
-                    hack_data.loc[len(hack_data.index)] = row_data
+                    self.hack_data.loc[len(self.hack_data.index)] = row_data
                 
-                print(hack_data)
-                hack_data.to_excel("hackathon_data.xlsx")
+                print(self.hack_data)
+                self.hack_data.to_excel("hackathon_data.xlsx")
 
     def scrape_data(self):
         
