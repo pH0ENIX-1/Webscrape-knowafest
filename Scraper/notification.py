@@ -11,7 +11,7 @@ class Notify:
         notifier = Notification(
             app_id="Web-scraper",
             title="New Event",
-            msg="new event found",
+            msg=message,
             icon="C:\\Users\\sanja\\Documents\\GitHub\\Webscrape-knowafest\\notification_icon.png"
 
         )
@@ -21,5 +21,3 @@ class Notify:
         notifier.show()
         
 
-notification_manager = Notify()
-notification_manager.send_notification("hello world")

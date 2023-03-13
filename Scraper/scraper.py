@@ -2,10 +2,11 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 import json
+import xlsxwriter
 
 class Scraper:
     
-    def __init__(self, text_filename :str = "hackathons.txt", xlsx_filename :str = "hackathon_data.xlsx"):
+    def __init__(self):
         
         setting_handler = open("settings.json")
         settings = json.load(setting_handler)
@@ -34,6 +35,7 @@ class Scraper:
 
     def write_data(self):   
         
+        prev_hackdata = pd.read_excel("hackathon_data.xlsx")
         with open(self.html_name,'r') as website:
             
             soup = BeautifulSoup(website,'lxml')
@@ -57,17 +59,36 @@ class Scraper:
 
                     row_data = self.preprocess_data(hackathon)
                     row_data.append(location)
-
+                    
                     self.hack_data.loc[len(self.hack_data.index)] = row_data
+                    
                 
-                print(self.hack_data)
+                self.hack_data['Start Date'] = pd.to_datetime(self.hack_data['Start Date'],dayfirst=True)
+                self.hack_data.to_excel("hackathon_data.xlsx")
+                for index in range(1,len(self.hack_data)):
+                    if self.hack_data.loc[index,'Start Date'] < pd.datetime.now():
+                        self.hack_data.drop(index=index, axis=0, inplace=True)
+
+                df_all = self.hack_data.merge(prev_hackdata.drop_duplicates(), on="Fest Name",
+                   how='left', indicator=True)
+
+                #create DataFrame with rows that exist in first DataFrame only
+                new_events = df_all[df_all['_merge'] == 'left_only']
+
                 self.hack_data.to_excel(self.xlsx_name)
+
+                if not new_events.empty:
+                    print("new Event Found!")
+                    return "new Event"
+                else:
+                    print("No new events found.")
 
     def scrape_data(self):
         
         # self.request_site()
-        self.write_data()
+        return self.write_data()
 
 
-scraper_object = Scraper()
-scraper_object.scrape_data()
+# scraper_object = Scraper()
+# scraper_object.scrape_data()
+# print(scraper_object.hack_data.info())
