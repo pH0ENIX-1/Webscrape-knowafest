@@ -3,6 +3,7 @@ import requests
 import pandas as pd
 import json
 import xlsxwriter
+import re
 
 class Scraper:
     
@@ -41,12 +42,20 @@ class Scraper:
             soup = BeautifulSoup(website,'lxml')
             hackathons = soup.find_all('tr')
             locations = soup.find_all("span", itemprop = "name")
-            register_links = soup.find_all("tr", itemtype="http://schema.org/Event")
-            print(register_links[0].get("onClick"))
-            
+            hack = soup.find_all('tr')[1:]
+            soup1 = BeautifulSoup(hack,'lxml')
+            link = soup1.tr['onClick'].split("'")[1]
+            print(link)
+            # print(register_links)
+            # link = re.search(r'window\.open\(\'(.*?)\'\)', soup.tr['onClick']).group(1)
+
+            # print(link)
+    
             with open(self.file_name,'w') as outfile:
                 
                 dataframe_columns = hackathons.pop(0).text.split("\n")
+                
+                #print(link)
                 dataframe_columns.pop(4)
                 self.hack_data = pd.DataFrame(columns = dataframe_columns)
                 
